@@ -1,0 +1,42 @@
+body {
+  font-size: 1.15rem;
+}
+
+.custom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(196, 82, 101);
+  padding: 25px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.custom-nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.instructions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.questions {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.btn-container-choices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-container-choices button {
+  margin: 5px;
+  padding: 5px 30px;
+  background-color: pink;
+}
