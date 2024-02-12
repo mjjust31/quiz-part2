@@ -20,7 +20,7 @@ const trivia = [
     answer: "Avocado",
   },
   {
-    question: "WWat is the chemical symbol for water?",
+    question: "What is the chemical symbol for water?",
     choices: ["1776", "1789", "1804", "1812"],
     answer: "1776",
   },

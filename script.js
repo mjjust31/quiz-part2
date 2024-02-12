@@ -53,6 +53,7 @@ const trivia = [
 
 let timeLeft = 45;
 let quizIndex = 0;
+let score = 0;
 
 const init = () => {
   timer();
@@ -91,21 +92,28 @@ const displayQuestions = () => {
 
 const checkAnswer = (event) => {
   const { question, choices, answer } = trivia[quizIndex];
-
   const target = event.target;
-  console.log("target.tagName", target.tagName);
 
   if (target.matches("BUTTON")) {
     if (target.textContent === answer) {
-      console.log("you are correct");
+      correctAnswer();
     } else {
-      console.log("you are wrong");
+      wrongAnswer();
     }
-  } else {
-    console.log("you are not pressing a button");
+    quizIndex++;
+    displayQuestions();
   }
-  quizIndex++;
-  displayQuestions();
+};
+const correctAnswer = () => {
+  const answerOutcomeEl = document.createElement("h4");
+  answerOutcomeEl.setAttribute("style", "color: green");
+  answerOutcomeEl.textContent = "You are correct";
+  const answerdisplayEl = document.querySelector(".answer-outcome");
+  answerdisplayEl.appendChild(answerOutcomeEl);
+};
+
+const wrongAnswer = () => {
+  console.log("wrong");
 };
 
 startButtonEl.addEventListener("click", displayQuestions);
