@@ -21,13 +21,13 @@ const trivia = [
   },
   {
     question: "WWat is the chemical symbol for water?",
-    choices: ["1776", "1789", "1804", "1812"],
-    answer: "1776",
+    choices: ["H20", "He", "Ho", "H202"],
+    answer: "H20",
   },
   {
     question: "In which year did the United States declare its independence?",
-    choices: ["Berlin", "Madrid", "Paris", "Rome"],
-    answer: "Paris",
+    choices: ["1778", "1791", "1776", "1775"],
+    answer: "1776",
   },
   {
     question: "What is the largest mammal on Earth?",
@@ -54,14 +54,24 @@ const trivia = [
 let timeLeft = 45;
 let quizIndex = 0;
 let score = 0;
+const scoreEl = document.querySelector(".score");
+scoreEl.textContent = score;
 
 const init = () => {
-  timer();
+  const timeEl = document.querySelector(".timer");
+  timeEl.textContent = "Timer: " + timeLeft;
 };
 
 const timer = () => {
   const timeEl = document.querySelector(".timer");
-  timeEl.textContent = "Timer: " + timeLeft;
+
+  let timeInterval = setInterval(function () {
+    timeLeft--;
+    timeEl.textContent = "Timer: " + timeLeft;
+    if (timeLeft === 0) {
+      clearInterval(timeInterval);
+    }
+  }, 1000);
 };
 
 const startButtonEl = document.querySelector(".btn-start");
@@ -72,6 +82,8 @@ const displayQuestions = () => {
 
   clearInstructions.textContent = "";
   buttonContainer.textContent = "";
+
+  timer();
 
   for (let i = 0; i < trivia[quizIndex].choices.length; i++) {
     const currentQuestion = trivia[quizIndex].question;
@@ -109,11 +121,21 @@ const correctAnswer = () => {
   answerOutcomeEl.setAttribute("style", "color: green");
   answerOutcomeEl.textContent = "You are correct";
   const answerdisplayEl = document.querySelector(".answer-outcome");
+  answerdisplayEl.textContent = "";
   answerdisplayEl.appendChild(answerOutcomeEl);
+  score += 10;
+  scoreEl.textContent = score;
 };
 
 const wrongAnswer = () => {
-  console.log("wrong");
+  const answerOutcomeEl = document.createElement("h4");
+  answerOutcomeEl.setAttribute("style", "color: red");
+  answerOutcomeEl.textContent = "You are wrong";
+  const answerdisplayEl = document.querySelector(".answer-outcome");
+  answerdisplayEl.textContent = "";
+  answerdisplayEl.appendChild(answerOutcomeEl);
+  score -= 5;
+  scoreEl.textContent = score;
 };
 
 startButtonEl.addEventListener("click", displayQuestions);
